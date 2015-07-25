@@ -33,11 +33,28 @@ def getfeature(contentstring):
     totalwords_num = len(contentstring)
 
     stopwords_num = 0
+    stoplist = codecs.open("stoplist.txt","r",'utf-8').read().splitlines()
+    #debug
+    #for each in stoplist:
+    #    print "debug each: ", each, type(each), repr(each)
+    #print "debug stoplist:===>", stoplist
     for k in counts.keys():
+    #    print "debug type k:===>", k, type(k)
         if k in stoplist:
+    #        print "debug in stoplist:===>", k
             stopwords_num += counts[k]
 
+    print top3tf_num, totalwords_num, stopwords_num
     return top3tf_num, totalwords_num, stopwords_num
+
+targetcontent = open("testinput","r")
+for article in targetcontent:
+    getfeature(article)
+
+
+
+
+
 
 """
 def debug():
