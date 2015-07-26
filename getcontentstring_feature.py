@@ -30,8 +30,7 @@ def getfeature(contentstring):
     counts = Counter(wordlist)
 
     top3tf_num = sum(heapq.nlargest(3,counts.values()))
-    totalwords_num = len(contentstring)
-
+    totalwords_num = 0
     stopwords_num = 0
     stoplist = codecs.open("stoplist.txt","r",'utf-8').read().splitlines()
     #debug
@@ -44,12 +43,15 @@ def getfeature(contentstring):
     #        print "debug in stoplist:===>", k
             stopwords_num += counts[k]
 
-    print top3tf_num, totalwords_num, stopwords_num
+    for k in counts.keys():
+        totalwords_num += counts[k]
+
     return top3tf_num, totalwords_num, stopwords_num
 
-targetcontent = open("testinput","r")
-for article in targetcontent:
-    getfeature(article)
+#targetcontent = open("testallinput","r")
+#targetcontent = open("testinput","r")
+#for article in targetcontent:
+    #getfeature(article)
 
 
 
